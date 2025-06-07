@@ -12,7 +12,8 @@
     --cor-secundaria: #00000052;
     --cor-terciaria: #ffffff;
     --fonte-padrao: Arial, Verdana, Helvetica, sans-serif;
-    --fonte-destaque: 'Inter';
+    --fonte-destaque: 'Inter', sans-serif;
+    --cor-primaria: #71AE3F;
 
     /* Gradiente multicolorido para animação */
     --gradiente-loop: linear-gradient(
@@ -30,24 +31,13 @@
 }
 
 /*----------------------------------------*/
-/* RESET & REMOÇÃO DE SCROLL              */
+/* RESET                                  */
 /*----------------------------------------*/
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: var(--fonte-destaque), sans-serif;
-}
-
-/* Remove a barra de rolagem em todos os navegadores */
-html, body {
-    overflow: hidden;
-    height: 100%;
-}
-
-/* Estilização da barra de rolagem (opcional) */
-::-webkit-scrollbar {
-    display: none;
+    font-family: var(--fonte-destaque);
 }
 
 /*----------------------------------------*/
@@ -57,7 +47,7 @@ body {
     display: flex;
     align-items: center;
     height: 100vh;
-    background-color: #000; /* Cor de fundo padrão */
+    background-color: #000;
 }
 
 /*----------------------------------------*/
@@ -93,7 +83,6 @@ section {
     align-items: center;
     justify-content: center;
     text-align: center;
-    overflow-y: auto; /* Permite rolagem apenas dentro da seção se necessário */
 }
 
 /*----------------------------------------*/
@@ -101,13 +90,13 @@ section {
 /*----------------------------------------*/
 header img {
     width: 140px;
-    border: 1px solid var(--cor-borda);
+    border: 1px solid var(--cor-primaria);
     border-radius: 50%;
     margin-bottom: 10px;
 }
 
 header h3 {
-    color: #71AE3F;
+    color: var(--cor-primaria);
     font-size: 1.35rem;
 }
 
@@ -117,7 +106,7 @@ header p {
 }
 
 /*----------------------------------------*/
-/* MAIN                                   */
+/* MAIN - ANIMAÇÃO RGB SMOOTH LOOP        */
 /*----------------------------------------*/
 main {
     display: flex;
@@ -126,96 +115,59 @@ main {
     gap: 18px;
 }
 
-main a,
-.link-imagem {
+main a, .link-imagem {
     padding: 15px;
     text-decoration: none;
     color: var(--cor-terciaria);
-    border: 3px solid transparent;
+    border: 3px solid;
     border-radius: 15px;
-    border-image-slice: 1;
-    border-image-source: var(--gradiente-loop);
-    animation: animate-border 5s linear infinite;
-    transition: all 0.5s ease-in-out;
+    border-image: var(--gradiente-loop) 1;
+    animation: border-flow 8s linear infinite;
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
     position: relative;
-    overflow: visible;
+    transition: all 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
-main a img,
-.link-imagem img {
+/* ANIMAÇÃO FLUIDA EM LOOP */
+@keyframes border-flow {
+    0% {
+        border-image-source: linear-gradient(270deg,
+            #ff0000, #ff7300, #fffb00, #48ff00,
+            #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    }
+    50% {
+        border-image-source: linear-gradient(270deg,
+            #ff00c8, #7a00ff, #002bff, #00ffd5,
+            #48ff00, #fffb00, #ff7300, #ff0000, #ff00c8);
+    }
+    100% {
+        border-image-source: linear-gradient(270deg,
+            #ff0000, #ff7300, #fffb00, #48ff00,
+            #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    }
+}
+
+main a:hover, .link-imagem:hover {
+    color: #110225;
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: scale(1.03);
+}
+
+/* ÍCONES */
+main a img, .link-imagem img {
     width: 30px;
     height: 30px;
-    object-fit: cover;
+    object-fit: contain;
     position: absolute;
     top: -10px;
     left: 85%;
     transform: translateX(-50%);
     z-index: 1;
     background-color: transparent;
-    border-radius: 50%;
-}
-
-main a:hover,
-.link-imagem:hover {
-    color: #110225;
-    background-color: #ffffff;
-    transform: scale(1.1);
-}
-
-/*----------------------------------------*/
-/* COOKIE BANNER                          */
-/*----------------------------------------*/
-.cookie-banner {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: #333;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.cookie-banner button {
-    background: #4caf50;
-    color: white;
     border: none;
-    padding: 10px 20px;
-    margin-left: 10px;
-    cursor: pointer;
-}
-
-.cookie-banner button:last-child {
-    background: #f44336;
-}
-
-/*----------------------------------------*/
-/* ANIMAÇÃO DE BORDA                      */
-/*----------------------------------------*/
-@keyframes animate-border {
-    0% {
-        border-image-source: var(--gradiente-loop);
-    }
-    50% {
-        border-image-source: linear-gradient(
-            90deg,
-            #ff00c8,
-            #7a00ff,
-            #002bff,
-            #00ffd5,
-            #48ff00,
-            #fffb00,
-            #ff7300,
-            #ff0000,
-            #ff00c8
-        );
-    }
-    100% {
-        border-image-source: var(--gradiente-loop);
-    }
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
 }
 
 /*----------------------------------------*/
@@ -224,11 +176,10 @@ main a:hover,
 @media (max-width: 520px) {
     body {
         padding: 0 20px;
-        background-color: #000; /* Removido o fundo roxo */
+        background-color: rgba(137, 43, 226, 0.3);
         background-image: url('../imagens/VideoCapture_20250319-215144.jpg');
         background-size: cover;
         background-position: center;
-        background-repeat: no-repeat;
     }
 
     .container {
@@ -240,41 +191,18 @@ main a:hover,
         max-width: 480px;
         padding: 29px;
         margin: 0;
-        gap: 20px;
-        background-color: var(--cor-secundaria);
-        border: 1px solid var(--cor-terciaria);
-        border-radius: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        text-align: center;
+        height: auto;
+        max-height: 90vh;
     }
 
-    main a,
-    .link-imagem {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    main a, .link-imagem {
         padding: 8px 15px;
         font-size: 0.85rem;
-        border-radius: 10px;
-        transition: all 0.3s ease;
-        overflow: visible;
     }
 
-    main a img,
-    .link-imagem img {
+    main a img, .link-imagem img {
         width: 20px;
         height: 20px;
-        object-fit: cover;
-        position: absolute;
-        top: -10px;
         left: 80%;
-        transform: translateX(-50%);
-        z-index: 1;
-        background-color: transparent;
-        border-radius: 50%;
     }
 }
