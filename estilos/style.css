@@ -30,13 +30,24 @@
 }
 
 /*----------------------------------------*/
-/* RESET                                  */
+/* RESET & REMOÇÃO DE SCROLL              */
 /*----------------------------------------*/
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: var(--fonte-destaque), sans-serif;
+}
+
+/* Remove a barra de rolagem em todos os navegadores */
+html, body {
+    overflow: hidden;
+    height: 100%;
+}
+
+/* Estilização da barra de rolagem (opcional) */
+::-webkit-scrollbar {
+    display: none;
 }
 
 /*----------------------------------------*/
@@ -46,6 +57,7 @@ body {
     display: flex;
     align-items: center;
     height: 100vh;
+    background-color: #000; /* Cor de fundo padrão */
 }
 
 /*----------------------------------------*/
@@ -81,6 +93,7 @@ section {
     align-items: center;
     justify-content: center;
     text-align: center;
+    overflow-y: auto; /* Permite rolagem apenas dentro da seção se necessário */
 }
 
 /*----------------------------------------*/
@@ -211,7 +224,7 @@ main a:hover,
 @media (max-width: 520px) {
     body {
         padding: 0 20px;
-        background-color: rgba(137, 43, 226, 0.3);
+        background-color: #000; /* Removido o fundo roxo */
         background-image: url('../imagens/VideoCapture_20250319-215144.jpg');
         background-size: cover;
         background-position: center;
