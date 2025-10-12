@@ -1,208 +1,234 @@
-@charset "UTF-8";
+    @charset "UTF-8";
 
-/*----------------------------------------*/
-/* IMPORTAÇÃO DE FONTES                   */
-/*----------------------------------------*/
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+    /*----------------------------------------*/
+    /* IMPORTAÇÃO DE FONTES                   */
+    /*----------------------------------------*/
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-/*----------------------------------------*/
-/* VARIÁVEIS GLOBAIS                      */
-/*----------------------------------------*/
-:root {
-    --cor-secundaria: #00000052;
-    --cor-terciaria: #ffffff;
-    --fonte-padrao: Arial, Verdana, Helvetica, sans-serif;
-    --fonte-destaque: 'Inter', sans-serif;
-    --cor-primaria: #71AE3F;
+    /*----------------------------------------*/
+    /* VARIÁVEIS GLOBAIS                      */
+    /*----------------------------------------*/
+    :root {
+        --cor-secundaria: rgba(255, 255, 255, 0.05);
+        --cor-terciaria: #ffffff;
+        --cor-primaria: #73ff00;
+        --fonte-padrao: Arial, Verdana, Helvetica, sans-serif;
+        --fonte-destaque: 'Inter', sans-serif;
 
-    /* Gradiente multicolorido para animação */
-    --gradiente-loop: linear-gradient(
-        270deg,
-        #ff0000,
-        #ff7300,
-        #fffb00,
-        #48ff00,
-        #00ffd5,
-        #002bff,
-        #7a00ff,
-        #ff00c8,
-        #ff0000
-    );
-}
-
-/*----------------------------------------*/
-/* RESET                                  */
-/*----------------------------------------*/
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: var(--fonte-destaque);
-}
-
-/*----------------------------------------*/
-/* BODY                                   */
-/*----------------------------------------*/
-body {
-    display: flex;
-    align-items: center;
-    height: 100vh;
-    background-color: #000;
-}
-
-/*----------------------------------------*/
-/* CONTAINER & FUNDO                      */
-/*----------------------------------------*/
-.container {
-    width: 100px;
-    height: 100vh;
-}
-
-.fundo {
-    width: 100px;
-    height: 100vh;
-    background-image: url('imagens/fogo.png');
-    background-size: cover;
-    background-position: center;
-}
-
-/*----------------------------------------*/
-/* SEÇÃO PRINCIPAL                        */
-/*----------------------------------------*/
-section {
-    width: 530px;
-    height: 885px;
-    padding: 29px;
-    margin-left: 603px;
-    gap: 20px;
-    background-color: var(--cor-secundaria);
-    border: 1px solid var(--cor-terciaria);
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-/*----------------------------------------*/
-/* HEADER                                 */
-/*----------------------------------------*/
-header img {
-    width: 140px;
-    border: 1px solid var(--cor-primaria);
-    border-radius: 50%;
-    margin-bottom: 10px;
-}
-
-header h3 {
-    color: var(--cor-primaria);
-    font-size: 1.35rem;
-}
-
-header p {
-    color: var(--cor-terciaria);
-    font-weight: 500;
-}
-
-/*----------------------------------------*/
-/* MAIN - ANIMAÇÃO RGB SMOOTH LOOP        */
-/*----------------------------------------*/
-main {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 18px;
-}
-
-main a, .link-imagem {
-    padding: 15px;
-    text-decoration: none;
-    color: var(--cor-terciaria);
-    border: 3px solid;
-    border-radius: 15px;
-    border-image: var(--gradiente-loop) 1;
-    animation: border-flow 8s linear infinite;
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
-    position: relative;
-    transition: all 0.3s ease;
-    background-color: rgba(0, 0, 0, 0.3);
-}
-
-/* ANIMAÇÃO FLUIDA EM LOOP */
-@keyframes border-flow {
-    0% {
-        border-image-source: linear-gradient(270deg,
-            #ff0000, #ff7300, #fffb00, #48ff00,
-            #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+        /* Gradiente RGB contínuo, claro e vibrante */
+        --gradiente-loop: linear-gradient(
+            120deg,
+            #73ff00,
+            #00ffd5,
+            #00b3ff,
+            #7a00ff,
+            #ff00b3,
+            #ff7300,
+            #ffe600,
+            #73ff00
+        );
     }
-    50% {
-        border-image-source: linear-gradient(270deg,
-            #ff00c8, #7a00ff, #002bff, #00ffd5,
-            #48ff00, #fffb00, #ff7300, #ff0000, #ff00c8);
+
+    /*----------------------------------------*/
+    /* RESET                                  */
+    /*----------------------------------------*/
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: var(--fonte-destaque);
     }
-    100% {
-        border-image-source: linear-gradient(270deg,
-            #ff0000, #ff7300, #fffb00, #48ff00,
-            #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
-    }
-}
 
-main a:hover, .link-imagem:hover {
-    color: #110225;
-    background-color: rgba(255, 255, 255, 0.9);
-    transform: scale(1.03);
-}
-
-/* ÍCONES */
-main a img, .link-imagem img {
-    width: 30px;
-    height: 30px;
-    object-fit: contain;
-    position: absolute;
-    top: -10px;
-    left: 85%;
-    transform: translateX(-50%);
-    z-index: 1;
-    background-color: transparent;
-    border: none;
-    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
-}
-
-/*----------------------------------------*/
-/* MEDIA QUERIES                          */
-/*----------------------------------------*/
-@media (max-width: 520px) {
+    /*----------------------------------------*/
+    /* BODY                                   */
+    /*----------------------------------------*/
     body {
-        padding: 0 20px;
-        background-color: rgba(137, 43, 226, 0.3);
-        background-image: url('../imagens/VideoCapture_20250319-215144.jpg');
+        display: flex;
+        align-items: center;
+        height: 100vh;
+        background-color: #000;
+    }
+
+    /*----------------------------------------*/
+    /* CONTAINER & FUNDO                      */
+    /*----------------------------------------*/
+    .container {
+        width: 100px;
+        height: 100vh;
+    }
+
+    .fundo {
+        width: 100px;
+        height: 100vh;
+        background-image: url('imagens/fogo.png');
         background-size: cover;
         background-position: center;
     }
 
-    .container {
-        display: none;
-    }
-
+    /*----------------------------------------*/
+    /* SEÇÃO PRINCIPAL                        */
+    /*----------------------------------------*/
     section {
-        width: 100%;
-        max-width: 480px;
+        width: 530px;
+        height: 885px;
         padding: 29px;
-        margin: 0;
-        height: auto;
-        max-height: 90vh;
+        margin-left: 603px;
+        gap: 20px;
+        background-color: var(--cor-secundaria);
+        border: 1px solid var(--cor-terciaria);
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
     }
 
-    main a, .link-imagem {
-        padding: 8px 15px;
-        font-size: 0.85rem;
+    /*----------------------------------------*/
+    /* HEADER                                 */
+    /*----------------------------------------*/
+    header img {
+        width: 140px;
+        border: 1px solid var(--cor-primaria);
+        border-radius: 50%;
+        margin-bottom: 10px;
     }
 
-    main a img, .link-imagem img {
-        width: 20px;
-        height: 20px;
-        left: 80%;
+    header h3 {
+        color: var(--cor-primaria);
+        font-size: 1.35rem;
     }
-}
+
+    header p {
+        color: var(--cor-terciaria);
+        font-weight: 500;
+    }
+
+    /*----------------------------------------*/
+    /* MAIN - LOOP RGB LÍQUIDO E ILUMINADO    */
+    /*----------------------------------------*/
+    main {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 18px;
+    }
+
+    main a,
+    .link-imagem {
+        padding: 15px;
+        text-decoration: none;
+        color: var(--cor-terciaria);
+        border: 3px solid transparent;
+        border-image: var(--gradiente-loop) 1;
+        animation: border-flow 8s linear infinite;
+        background-color: rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(6px);
+        border-radius: 0;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    /* Hover suave e luminoso */
+    main a:hover,
+    .link-imagem:hover {
+        color: #0e0025;
+        background: rgba(255, 255, 255, 0.12);
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.5),
+                    0 0 60px rgba(115, 255, 0, 0.3);
+        transform: scale(1.05);
+        border-image: linear-gradient(
+            270deg,
+            #73ff00,
+            #00ffd5,
+            #00b3ff,
+            #7a00ff,
+            #ff00b3,
+            #ff7300,
+            #ffe600,
+            #73ff00
+        ) 1;
+    }
+
+    /*----------------------------------------*/
+    /* ANIMAÇÃO RGB FLUIDA E SEM ESCURECER    */
+    /*----------------------------------------*/
+    @keyframes border-flow {
+        0% {
+            border-image-source: linear-gradient(270deg,
+                #73ff00, #00ffd5, #00b3ff, #7a00ff, #ff00b3, #ff7300, #ffe600, #73ff00);
+        }
+        25% {
+            border-image-source: linear-gradient(270deg,
+                #00ffd5, #00b3ff, #7a00ff, #ff00b3, #ff7300, #ffe600, #73ff00, #00ffd5);
+        }
+        50% {
+            border-image-source: linear-gradient(270deg,
+                #00b3ff, #7a00ff, #ff00b3, #ff7300, #ffe600, #73ff00, #00ffd5, #00b3ff);
+        }
+        75% {
+            border-image-source: linear-gradient(270deg,
+                #7a00ff, #ff00b3, #ff7300, #ffe600, #73ff00, #00ffd5, #00b3ff, #7a00ff);
+        }
+        100% {
+            border-image-source: linear-gradient(270deg,
+            #7a00ff, #ff00b3, #ff7300, #ffe600, #73ff00);
+        }
+    }
+
+    /*----------------------------------------*/
+    /* ÍCONES                                 */
+    /*----------------------------------------*/
+    main a img,
+    .link-imagem img {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+        position: absolute;
+        top: -10px;
+        left: 85%;
+        transform: translateX(-50%);
+        z-index: 1;
+        background-color: transparent;
+        border: none;
+        filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+    }
+
+    /*----------------------------------------*/
+    /* MEDIA QUERIES                          */
+    /*----------------------------------------*/
+    @media (max-width: 520px) {
+        body {
+            padding: 0 20px;
+            background-color: rgba(137, 43, 226, 0.3);
+            background-image: url('../imagens/VideoCapture_20250319-215144.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            display: none;
+        }
+
+        section {
+            width: 100%;
+            max-width: 480px;
+            padding: 29px;
+            margin: 0;
+            height: auto;
+            max-height: 90vh;
+        }
+
+        main a,
+        .link-imagem {
+            padding: 8px 15px;
+            font-size: 0.85rem;
+        }
+
+        main a img,
+        .link-imagem img {
+            width: 20px;
+            height: 20px;
+            left: 80%;
+        }
+    }
